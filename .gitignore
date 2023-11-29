@@ -1,24 +1,70 @@
-# Compiled class file
-*.class
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настасья - Бизнес-аналитик</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #3498db;
+        }
+        #process-form {
+            margin-top: 20px;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        .bpmn-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .bpmn-element {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать, Настасья - Бизнес-аналитик!</h1>
+    <p>Здесь вы можете создавать бизнес-процессы по вводной информации.</p>
 
-# Log file
-*.log
+    <form id="process-form">
+        <label for="input-info">Вводная информация:</label>
+        <textarea id="input-info" rows="4" cols="50" placeholder="Введите информацию..."></textarea><br>
+        <button type="button" onclick="createProcess()">Создать процесс</button>
+    </form>
 
-# BlueJ files
-*.ctxt
+    <div id="result"></div>
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+    <script>
+        function createProcess() {
+            var inputInfo = document.getElementById("input-info").value;
+            var resultContainer = document.getElementById("result");
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+            // Здесь можете добавить вашу логику обработки информации и построения бизнес-процесса
+            // В данном случае, каждый шаг представлен в виде элемента BPMN с использованием котиков
+            var steps = inputInfo.split('\n');
+            var processHTML = "<h2>Ваш бизнес-процесс:</h2><div class='bpmn-diagram'>";
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+            for (var i = 0; i < steps.length; i++) {
+                if (steps[i].trim() !== "") {
+                    processHTML += "<div class='bpmn-element'>" + steps[i] + "<br><img src='https://placekitten.com/100/100' alt='Котик'></div>";
+                }
+            }
+
+            processHTML += "</div>";
+            resultContainer.innerHTML = processHTML;
+        }
+    </script>
+</body>
+</html>
